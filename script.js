@@ -189,9 +189,10 @@ products.forEach((product) => {
     "bg-purple-500 text-white px-3 py-2 rounded-md mt-3 w-full hover:bg-purple-600 transition";
 
   btn.addEventListener("click", () => {
-    ViewArr.push(product);
-
-    console.log(ViewArr);
+    let alreadyInCart = ViewArr.some((item) => item.title === product.title);
+    if (!alreadyInCart) {
+      ViewArr.push(product);
+    }
   });
 
   card.appendChild(img);
@@ -215,19 +216,20 @@ viewBtn.addEventListener("click", () => {
 
   let popupBox = document.createElement("div");
   popupBox.className =
-    "bg-white p-6 rounded-lg shadow-lg w-1/4 max-h-[80vh] overflow-auto";
+    "bg-white p-6 sm:p-8 rounded-lg shadow-lg w-11/12 sm:w-3/4 md:w-1/2 lg:w-1/3 max-h-[80vh] overflow-y-auto";
 
   let heading = document.createElement("h2");
   heading.innerText = "Your Cart";
-  heading.className = "text-2xl font-bold mb-4 text-center";
+  heading.className =
+    "text-lg sm:text-xl font-bold mb-4 text-center text-gray-800";
 
   let cartItems = document.createElement("div");
-  cartItems.className = "flex flex-col gap-4 items-center w-full";
+  cartItems.className = "flex flex-col gap-4 sm:gap-6 items-center w-full";
 
   ViewArr.forEach((item) => {
     let card = document.createElement("div");
     card.className =
-      "bg-white shadow-lg rounded-lg p-4 border border-gray-300 flex flex-col items-center w-[250px]";
+      "bg-white shadow-md rounded-lg p-4 border border-gray-300 flex flex-col items-center w-[90%] sm:w-[300px]";
 
     let img = document.createElement("img");
     img.src = item.image;
