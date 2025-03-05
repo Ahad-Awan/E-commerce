@@ -215,14 +215,14 @@ viewBtn.addEventListener("click", () => {
 
   let popupBox = document.createElement("div");
   popupBox.className =
-    "bg-white p-6 rounded-lg shadow-lg w-1/2 max-h-[80vh] overflow-auto";
+    "bg-white p-6 rounded-lg shadow-lg w-1/4 max-h-[80vh] overflow-auto";
 
   let heading = document.createElement("h2");
   heading.innerText = "Your Cart";
   heading.className = "text-2xl font-bold mb-4 text-center";
 
   let cartItems = document.createElement("div");
-  cartItems.className = "flex flex-wrap gap-4 justify-center";
+  cartItems.className = "flex flex-col gap-4 items-center w-full";
 
   ViewArr.forEach((item) => {
     let card = document.createElement("div");
