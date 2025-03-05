@@ -193,9 +193,9 @@ products.forEach((product) => {
     let alreadyInCart = ViewArr.some((item) => item.title === product.title);
     if (!alreadyInCart) {
       ViewArr.push(product);
+      count++;
+      cartCount.innerHTML = count;
     }
-    count++;
-    cartCount.innerHTML = count;
   });
 
   card.appendChild(img);
