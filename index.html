@@ -16,12 +16,20 @@
         <li>
           <a href="#" class="hover:text-yellow-300 transition">Contact</a>
         </li>
-        <button
-          class="bg-yellow-400 px-4 py-2 rounded-lg text-black font-bold hover:bg-yellow-500 transition"
-          id="viewCart"
-        >
-          View Cart
-        </button>
+        <div class="relative">
+          <button
+            id="viewCart"
+            class="bg-yellow-400 px-4 py-2 rounded-lg text-black font-bold hover:bg-yellow-500 transition"
+          >
+            View Cart
+          </button>
+          <span
+            id="cartCount"
+            class="absolute -top-3 -right-3 bg-red-500 text-white text-sm font-bold w-6 h-6 flex items-center justify-center rounded-full"
+          >
+            0
+          </span>
+        </div>
       </ul>
     </nav>
 
