@@ -201,3 +201,75 @@ products.forEach((product) => {
   card.appendChild(btn);
   productContainer.appendChild(card);
 });
+
+viewBtn.addEventListener("click", () => {
+  let existingPopup = document.getElementById("cartPopup");
+  if (existingPopup) {
+    existingPopup.remove();
+  }
+
+  let popup = document.createElement("div");
+  popup.id = "cartPopup";
+  popup.className =
+    "fixed inset-0 bg-black/50 flex justify-center items-center p-4";
+
+  let popupBox = document.createElement("div");
+  popupBox.className =
+    "bg-white p-6 rounded-lg shadow-lg w-1/2 max-h-[80vh] overflow-auto";
+
+  let heading = document.createElement("h2");
+  heading.innerText = "Your Cart";
+  heading.className = "text-2xl font-bold mb-4 text-center";
+
+  let cartItems = document.createElement("div");
+  cartItems.className = "flex flex-wrap gap-4 justify-center";
+
+  ViewArr.forEach((item) => {
+    let card = document.createElement("div");
+    card.className =
+      "bg-white shadow-lg rounded-lg p-4 border border-gray-300 flex flex-col items-center w-[250px]";
+
+    let img = document.createElement("img");
+    img.src = item.image;
+    img.className = "rounded-md mb-3 w-full h-40 object-cover";
+
+    let title = document.createElement("h1");
+    title.innerHTML = item.title;
+    title.className = "text-lg font-bold text-gray-800 text-center";
+
+    let description = document.createElement("p");
+    description.innerHTML = item.description;
+    description.className = "text-sm text-gray-600 text-center";
+
+    let price = document.createElement("p");
+    price.innerHTML = item.price;
+    price.className = "text-base font-semibold text-gray-700";
+
+    let quantityContainer = document.createElement("div");
+    quantityContainer.className =
+      "flex items-center justify-between w-full mt-3";
+
+    card.appendChild(img);
+    card.appendChild(title);
+    card.appendChild(description);
+    card.appendChild(price);
+    card.appendChild(quantityContainer);
+
+    cartItems.appendChild(card);
+  });
+
+  let closeBtn = document.createElement("button");
+  closeBtn.innerText = "Close";
+  closeBtn.className =
+    "mt-4 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition w-full";
+  closeBtn.addEventListener("click", () => {
+    popup.remove();
+  });
+
+  popupBox.appendChild(heading);
+  popupBox.appendChild(cartItems);
+  popupBox.appendChild(closeBtn);
+  popup.appendChild(popupBox);
+
+  document.body.appendChild(popup);
+});
