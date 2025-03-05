@@ -268,6 +268,12 @@ viewBtn.addEventListener("click", () => {
     popup.remove();
   });
 
+  popup.addEventListener("click", (event) => {
+    if (event.target === popup) {
+      popup.remove();
+    }
+  });
+
   popupBox.appendChild(heading);
   popupBox.appendChild(cartItems);
   popupBox.appendChild(closeBtn);
