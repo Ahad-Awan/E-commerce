@@ -201,7 +201,3 @@ products.forEach((product) => {
   card.appendChild(btn);
   productContainer.appendChild(card);
 });
-
-viewBtn.addEventListener("click", () => {
-  console.log("View btn click");
-});
