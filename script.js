@@ -225,52 +225,90 @@ viewBtn.addEventListener("click", () => {
 
   let popupBox = document.createElement("div");
   popupBox.className =
-    "bg-white p-6 sm:p-8 rounded-lg shadow-lg w-11/12 sm:w-3/4 md:w-1/2 lg:w-1/3 max-h-[80vh] overflow-y-auto";
+    "bg-white p-6 rounded-lg shadow-lg w-full sm:w-3/4 lg:w-2/3 max-h-[80vh] overflow-y-auto border border-gray-300";
+
+  // Cart Header
+  let cartHeader = document.createElement("div");
+  cartHeader.className = "flex justify-between items-center mb-4 border-b pb-3";
 
   let heading = document.createElement("h2");
   heading.innerText = "Your Cart";
-  heading.className =
-    "text-lg sm:text-xl font-bold mb-4 text-center text-gray-800";
+  heading.className = "text-2xl font-bold text-gray-800";
 
-  let cartItems = document.createElement("div");
-  cartItems.className = "flex flex-col gap-4 sm:gap-6 items-center w-full";
+  let closeBtn = document.createElement("button");
+  closeBtn.innerText = "✕";
+  closeBtn.className =
+    "text-white bg-red-500 px-3 py-1 rounded-full hover:bg-red-600 transition";
+  closeBtn.addEventListener("click", () => {
+    popup.remove();
+  });
+
+  cartHeader.appendChild(heading);
+  cartHeader.appendChild(closeBtn);
+  popupBox.appendChild(cartHeader);
+
+  let cartItems = document.createElement("table");
+  cartItems.className =
+    "w-full border-collapse bg-white text-gray-700 border border-gray-300";
+
+  let thead = document.createElement("thead");
+  thead.className = "bg-gray-200";
+  thead.innerHTML = `
+    <tr class="text-left border-b border-gray-300">
+      <th class="p-3 border-r">Image</th>
+      <th class="p-3 border-r">Title</th>
+      <th class="p-3 border-r">Description</th>
+      <th class="p-3 border-r">Price</th>
+      <th class="p-3 border-r text-center">Quantity</th>
+      <th class="p-3">Action</th>
+    </tr>
+  `;
+  cartItems.appendChild(thead);
+
+  let tbody = document.createElement("tbody");
 
   ViewArr.forEach((item) => {
-    let card = document.createElement("div");
-    card.className =
-      "bg-white shadow-md rounded-lg p-4 border border-gray-300 flex flex-col items-center w-[90%] sm:w-[300px]";
+    let row = document.createElement("tr");
+    row.className = "border-t border-gray-300";
 
+    let imgCell = document.createElement("td");
     let img = document.createElement("img");
     img.src = item.image;
-    img.className = "rounded-md mb-3 w-full h-40 object-cover";
+    img.className = "w-16 h-16 object-cover rounded";
+    imgCell.className = "p-3 border-r";
+    imgCell.appendChild(img);
 
-    let title = document.createElement("h1");
-    title.innerHTML = item.title;
-    title.className = "text-lg font-bold text-gray-800 text-center";
+    let titleCell = document.createElement("td");
+    titleCell.innerText = item.title;
+    titleCell.className = "p-3 font-medium border-r";
 
-    let description = document.createElement("p");
-    description.innerHTML = item.description;
-    description.className = "text-sm text-gray-600 text-center";
+    let descCell = document.createElement("td");
+    descCell.innerText = item.description;
+    descCell.className = "p-3 text-sm border-r";
 
-    let price = document.createElement("p");
-    price.innerHTML = item.price;
-    price.className = "text-base font-semibold text-gray-700";
+    let priceCell = document.createElement("td");
+    priceCell.innerText = `${item.price}`;
+    priceCell.className = "p-3 font-semibold border-r";
 
-    let quantityContainer = document.createElement("div");
-    quantityContainer.className =
-      "flex items-center justify-center w-full mt-3";
+    let quantityCell = document.createElement("td");
+    quantityCell.className = "p-3 border-r text-center";
+
+    let quantityWrapper = document.createElement("div");
+    quantityWrapper.className = "flex items-center justify-center space-x-2";
 
     let minusBtn = document.createElement("button");
     minusBtn.innerText = "-";
-    minusBtn.className = "bg-gray-300 text-black px-3 py-1 rounded-md";
+    minusBtn.className =
+      "bg-gray-300 text-black px-3 py-1 rounded hover:bg-gray-400";
 
     let quantity = document.createElement("span");
     quantity.innerText = item.quantity || 1;
-    quantity.className = "mx-3 text-lg";
+    quantity.className = "text-lg px-2 font-semibold";
 
     let plusBtn = document.createElement("button");
     plusBtn.innerText = "+";
-    plusBtn.className = "bg-gray-300 text-black px-3 py-1 rounded-md";
+    plusBtn.className =
+      "bg-gray-300 text-black px-3 py-1 rounded hover:bg-gray-400";
 
     plusBtn.addEventListener("click", () => {
       item.quantity = (item.quantity || 1) + 1;
@@ -287,40 +325,43 @@ viewBtn.addEventListener("click", () => {
         count = ViewArr.length;
         localStorage.setItem("cartCount", count);
         cartCount.innerHTML = count;
-        card.remove();
+        row.remove();
       }
     });
 
-    quantityContainer.appendChild(minusBtn);
-    quantityContainer.appendChild(quantity);
-    quantityContainer.appendChild(plusBtn);
+    quantityWrapper.appendChild(minusBtn);
+    quantityWrapper.appendChild(quantity);
+    quantityWrapper.appendChild(plusBtn);
+    quantityCell.appendChild(quantityWrapper);
 
-    card.appendChild(img);
-    card.appendChild(title);
-    card.appendChild(description);
-    card.appendChild(price);
-    card.appendChild(quantityContainer);
-    cartItems.appendChild(card);
+    let removeCell = document.createElement("td");
+    removeCell.className = "p-3 text-center";
+    let removeBtn = document.createElement("button");
+    removeBtn.innerText = "Remove";
+    removeBtn.className =
+      "bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600";
+    removeBtn.addEventListener("click", () => {
+      ViewArr = ViewArr.filter((cartItem) => cartItem.title !== item.title);
+      localStorage.setItem("cart", JSON.stringify(ViewArr));
+      count = ViewArr.length;
+      localStorage.setItem("cartCount", count);
+      cartCount.innerHTML = count;
+      row.remove();
+    });
+    removeCell.appendChild(removeBtn);
+
+    row.appendChild(imgCell);
+    row.appendChild(titleCell);
+    row.appendChild(descCell);
+    row.appendChild(priceCell);
+    row.appendChild(quantityCell);
+    row.appendChild(removeCell);
+
+    tbody.appendChild(row);
   });
 
-  let closeBtn = document.createElement("button");
-  closeBtn.innerText = "Close";
-  closeBtn.className =
-    "mt-4 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition w-full";
-  closeBtn.addEventListener("click", () => {
-    popup.remove();
-  });
-
-  popup.addEventListener("click", (event) => {
-    if (event.target === popup) {
-      popup.remove();
-    }
-  });
-
-  popupBox.appendChild(heading);
+  cartItems.appendChild(tbody);
   popupBox.appendChild(cartItems);
-  popupBox.appendChild(closeBtn);
   popup.appendChild(popupBox);
-
   document.body.appendChild(popup);
 });
