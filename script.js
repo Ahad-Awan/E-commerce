@@ -1,9 +1,11 @@
 let productContainer = document.getElementById("productContainer");
 let viewBtn = document.getElementById("viewCart");
 productContainer.className = "flex flex-wrap justify-center gap-6 mt-10";
-let ViewArr = [];
 let cartCount = document.getElementById("cartCount");
-let count = 0;
+let ViewArr = JSON.parse(localStorage.getItem("cart")) || [];
+let count = ViewArr.length;
+cartCount.innerHTML = count;
+
 const products = [
   {
     image:
@@ -190,11 +192,12 @@ products.forEach((product) => {
     "bg-purple-500 text-white px-3 py-2 rounded-md mt-3 w-full hover:bg-purple-600 transition";
 
   btn.addEventListener("click", () => {
-    let alreadyInCart = ViewArr.some((item) => item.title === product.title);
+    let alreadyInCart = ViewArr.find((item) => item.title === product.title);
     if (!alreadyInCart) {
       ViewArr.push(product);
-      localStorage.setItem("cart", JSON.stringify([...ViewArr]));
-      count++;
+      localStorage.setItem("cart", JSON.stringify(ViewArr));
+      count = ViewArr.length;
+      localStorage.setItem("cartCount", count);
       cartCount.innerHTML = count;
     } else {
       alert("Already in Cart");
