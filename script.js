@@ -213,7 +213,6 @@ products.forEach((product) => {
 });
 
 viewBtn.addEventListener("click", () => {
-  ViewArr = JSON.parse(localStorage.getItem("cart")) || [];
   let existingPopup = document.getElementById("cartPopup");
   if (existingPopup) {
     existingPopup.remove();
@@ -282,6 +281,13 @@ viewBtn.addEventListener("click", () => {
       if (item.quantity > 1) {
         item.quantity--;
         quantity.innerText = item.quantity;
+      } else {
+        ViewArr = ViewArr.filter((cartItem) => cartItem.title !== item.title);
+        localStorage.setItem("cart", JSON.stringify(ViewArr));
+        count = ViewArr.length;
+        localStorage.setItem("cartCount", count);
+        cartCount.innerHTML = count;
+        card.remove();
       }
     });
 
