@@ -195,6 +195,8 @@ products.forEach((product) => {
       ViewArr.push(product);
       count++;
       cartCount.innerHTML = count;
+    } else {
+      alert("Already in Cart");
     }
   });
 
@@ -252,14 +254,41 @@ viewBtn.addEventListener("click", () => {
 
     let quantityContainer = document.createElement("div");
     quantityContainer.className =
-      "flex items-center justify-between w-full mt-3";
+      "flex items-center justify-center w-full mt-3";
+
+    let minusBtn = document.createElement("button");
+    minusBtn.innerText = "-";
+    minusBtn.className = "bg-gray-300 text-black px-3 py-1 rounded-md";
+
+    let quantity = document.createElement("span");
+    quantity.innerText = item.quantity || 1;
+    quantity.className = "mx-3 text-lg";
+
+    let plusBtn = document.createElement("button");
+    plusBtn.innerText = "+";
+    plusBtn.className = "bg-gray-300 text-black px-3 py-1 rounded-md";
+
+    plusBtn.addEventListener("click", () => {
+      item.quantity = (item.quantity || 1) + 1;
+      quantity.innerText = item.quantity;
+    });
+
+    minusBtn.addEventListener("click", () => {
+      if (item.quantity > 1) {
+        item.quantity--;
+        quantity.innerText = item.quantity;
+      }
+    });
+
+    quantityContainer.appendChild(minusBtn);
+    quantityContainer.appendChild(quantity);
+    quantityContainer.appendChild(plusBtn);
 
     card.appendChild(img);
     card.appendChild(title);
     card.appendChild(description);
     card.appendChild(price);
     card.appendChild(quantityContainer);
-
     cartItems.appendChild(card);
   });
 
