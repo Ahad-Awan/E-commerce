@@ -193,6 +193,7 @@ products.forEach((product) => {
     let alreadyInCart = ViewArr.some((item) => item.title === product.title);
     if (!alreadyInCart) {
       ViewArr.push(product);
+      localStorage.setItem("cart", JSON.stringify([...ViewArr]));
       count++;
       cartCount.innerHTML = count;
     } else {
@@ -209,6 +210,7 @@ products.forEach((product) => {
 });
 
 viewBtn.addEventListener("click", () => {
+  ViewArr = JSON.parse(localStorage.getItem("cart")) || [];
   let existingPopup = document.getElementById("cartPopup");
   if (existingPopup) {
     existingPopup.remove();
