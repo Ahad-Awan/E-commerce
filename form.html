@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modern Form Validation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="flex justify-center items-center min-h-screen bg-gradient-to-r from-blue-400 to-purple-500 p-4"
+  >
+    <form
+      id="userForm"
+      class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md transform transition duration-500 hover:scale-105"
+    >
+      <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">
+        Enter Your Details
+      </h2>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 font-medium mb-1">Name</label>
+        <input
+          type="text"
+          id="name"
+          placeholder="Enter Your Name"
+          class="w-full p-3 border rounded-lg focus:ring-4 focus:ring-blue-400 focus:outline-none transition duration-300"
+          required
+        />
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 font-medium mb-1">Number</label>
+        <input
+          type="number"
+          id="number"
+          placeholder="Enter Your Number"
+          class="w-full p-3 border rounded-lg focus:ring-4 focus:ring-blue-400 focus:outline-none transition duration-300"
+          required
+        />
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 font-medium mb-1">Address</label>
+        <textarea
+          id="address"
+          placeholder="Enter Your Address"
+          class="w-full p-3 border rounded-lg focus:ring-4 focus:ring-blue-400 focus:outline-none transition duration-300"
+          required
+        ></textarea>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 font-medium mb-1"
+          >Payment Method</label
+        >
+        <select
+          name="select"
+          id="payment"
+          class="w-full p-3 border rounded-lg focus:ring-4 focus:ring-blue-400 focus:outline-none transition duration-300"
+        >
+          <option value="">Cash on Delivery</option>
+          <option value="">Bank Account</option>
+          <option value="">Jazz Cash</option>
+        </select>
+      </div>
+
+      <button
+        type="submit"
+        class="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white p-3 rounded-lg font-bold hover:opacity-90 transition duration-300"
+      >
+        Submit
+      </button>
+
+      <p
+        id="message"
+        class="text-red-500 mt-4 text-center font-medium transition duration-300"
+      ></p>
+    </form>
+
+    <script>
+      document
+        .getElementById("userForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          let name = document.getElementById("name");
+          let password = document.getElementById("number");
+          let address = document.getElementById("address");
+          let payment = document.getElementById("payment");
+          let message = document.getElementById("message");
+
+          if (
+            name.value.trim() === "" ||
+            password.value.trim() === "" ||
+            address.value.trim() === ""
+          ) {
+            message.textContent = "All fields are required!";
+            message.classList.add("text-red-500");
+            return;
+          }
+
+          message.textContent = "Form submitted successfully!";
+          message.classList.remove("text-red-500");
+          message.classList.add("text-green-500");
+
+          name.value = "";
+          password.value = "";
+          address.value = "";
+          payment.selectedIndex = 0;
+        });
+    </script>
+  </body>
+</html>

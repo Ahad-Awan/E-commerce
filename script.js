@@ -13,7 +13,8 @@ const products = [
     title: "Product 1",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "$20",
+    price: "20",
+    quantity: 1,
   },
   {
     image:
@@ -21,7 +22,8 @@ const products = [
     title: "Product 2",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "$25",
+    price: "25",
+    quantity: 1,
   },
   {
     image:
@@ -29,14 +31,16 @@ const products = [
     title: "Product 3",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "$50",
+    price: "50",
+    quantity: 1,
   },
   {
     image: "https://upload.wikimedia.org/wikipedia/commons/4/44/Jelly_cc11.jpg",
     title: "Product 4",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "$100",
+    price: "100",
+    quantity: 1,
   },
   {
     image:
@@ -44,7 +48,8 @@ const products = [
     title: "Product 5",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "$500",
+    price: "500",
+    quantity: 1,
   },
   {
     image:
@@ -52,7 +57,8 @@ const products = [
     title: "Product 6",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "$20",
+    price: "70",
+    quantity: 1,
   },
   {
     image:
@@ -60,7 +66,8 @@ const products = [
     title: "Product 7",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "$25",
+    price: "120",
+    quantity: 1,
   },
   {
     image:
@@ -68,14 +75,16 @@ const products = [
     title: "Product 8",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "$50",
+    price: "50",
+    quantity: 1,
   },
   {
     image: "https://upload.wikimedia.org/wikipedia/commons/4/44/Jelly_cc11.jpg",
     title: "Product 9",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "$100",
+    price: "400",
+    quantity: 1,
   },
   {
     image:
@@ -83,7 +92,8 @@ const products = [
     title: "Product 10",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "$500",
+    price: "500",
+    quantity: 1,
   },
   {
     image:
@@ -91,7 +101,8 @@ const products = [
     title: "Product 11",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "$20",
+    price: "220",
+    quantity: 1,
   },
   {
     image:
@@ -99,7 +110,8 @@ const products = [
     title: "Product 12",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "$25",
+    price: "325",
+    quantity: 1,
   },
   {
     image:
@@ -107,14 +119,16 @@ const products = [
     title: "Product 13",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "$50",
+    price: "450",
+    quantity: 1,
   },
   {
     image: "https://upload.wikimedia.org/wikipedia/commons/4/44/Jelly_cc11.jpg",
     title: "Product 14",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "$100",
+    price: "100",
+    quantity: 1,
   },
   {
     image:
@@ -122,7 +136,8 @@ const products = [
     title: "Product 15",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "$500",
+    price: "600",
+    quantity: 1,
   },
   {
     image:
@@ -130,7 +145,8 @@ const products = [
     title: "Product 16",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "$20",
+    price: "200",
+    quantity: 1,
   },
   {
     image:
@@ -138,7 +154,8 @@ const products = [
     title: "Product 17",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "$25",
+    price: "25",
+    quantity: 1,
   },
   {
     image:
@@ -146,14 +163,16 @@ const products = [
     title: "Product 18",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "$50",
+    price: "50",
+    quantity: 1,
   },
   {
     image: "https://upload.wikimedia.org/wikipedia/commons/4/44/Jelly_cc11.jpg",
     title: "Product 19",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "$100",
+    price: "100",
+    quantity: 1,
   },
   {
     image:
@@ -161,7 +180,8 @@ const products = [
     title: "Product 20",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "$500",
+    price: "700",
+    quantity: 1,
   },
 ];
 
@@ -183,6 +203,8 @@ products.forEach((product) => {
   description.className = "text-sm text-gray-600";
 
   let price = document.createElement("p");
+  let dollar = document.createElement("span");
+  dollar.innerHTML = "$";
   price.innerHTML = product.price;
   price.className = "text-base font-semibold text-gray-700";
 
@@ -207,6 +229,7 @@ products.forEach((product) => {
   card.appendChild(img);
   card.appendChild(title);
   card.appendChild(description);
+  card.appendChild(dollar);
   card.appendChild(price);
   card.appendChild(btn);
   productContainer.appendChild(card);
@@ -225,10 +248,11 @@ viewBtn.addEventListener("click", () => {
 
   let popupBox = document.createElement("div");
   popupBox.className =
-    "bg-white p-6 rounded-lg shadow-lg w-full sm:w-3/4 lg:w-2/3 max-h-[80vh] overflow-y-auto border border-gray-300";
+    "bg-white p-6 rounded-lg shadow-lg w-full sm:w-3/4 lg:w-full max-h-[100vh] overflow-y-auto border border-gray-300 flex items-center flex-col";
 
   let cartHeader = document.createElement("div");
-  cartHeader.className = "flex justify-between items-center mb-4 border-b pb-3";
+  cartHeader.className =
+    "flex justify-between items-center mb-4 border-b pb-3 gap-20";
 
   let heading = document.createElement("h2");
   heading.innerText = "Your Cart";
@@ -249,20 +273,6 @@ viewBtn.addEventListener("click", () => {
   let cartItems = document.createElement("table");
   cartItems.className =
     "w-full border-collapse bg-white text-gray-700 border border-gray-300 text-sm sm:text-base";
-
-  let thead = document.createElement("thead");
-  thead.className = "bg-gray-200";
-  thead.innerHTML = `
-    <tr class="text-left border border-gray-300">
-      <th class="p-3 border">Image</th>
-      <th class="p-3 border">Title</th>
-      <th class="p-3 border">Description</th>
-      <th class="p-3 border">Price</th>
-      <th class="p-3 border text-center">Quantity</th>
-      <th class="p-3">Action</th>
-    </tr>
-  `;
-  cartItems.appendChild(thead);
 
   let tbody = document.createElement("tbody");
 
@@ -287,7 +297,7 @@ viewBtn.addEventListener("click", () => {
       "p-3 text-xs sm:text-sm border text-center sm:text-left";
 
     let priceCell = document.createElement("td");
-    priceCell.innerText = `${item.price}`;
+    priceCell.innerText = `$${item.price}`;
     priceCell.className = "p-3 font-semibold border text-center";
 
     let quantityCell = document.createElement("td");
@@ -303,7 +313,7 @@ viewBtn.addEventListener("click", () => {
       "bg-gray-300 text-black px-2 sm:px-3 py-1 rounded hover:bg-gray-400";
 
     let quantity = document.createElement("span");
-    quantity.innerText = item.quantity || 1;
+    quantity.innerText = item.quantity;
     quantity.className = "text-lg px-2 font-semibold";
 
     let plusBtn = document.createElement("button");
@@ -311,15 +321,25 @@ viewBtn.addEventListener("click", () => {
     plusBtn.className =
       "bg-gray-300 text-black px-2 sm:px-3 py-1 rounded hover:bg-gray-400";
 
+    let subTotalCell = document.createElement("td");
+    subTotalCell.className = "p-3 border font-semibold text-center";
+    let updateSubtotal = () => {
+      let subTotal = item.price * item.quantity;
+      subTotalCell.innerHTML = `Sub Total: $${subTotal}`;
+    };
+    updateSubtotal();
+
     plusBtn.addEventListener("click", () => {
-      item.quantity = (item.quantity || 1) + 1;
+      item.quantity++;
       quantity.innerText = item.quantity;
+      updateSubtotal();
     });
 
     minusBtn.addEventListener("click", () => {
       if (item.quantity > 1) {
         item.quantity--;
         quantity.innerText = item.quantity;
+        updateSubtotal();
       } else {
         ViewArr = ViewArr.filter((cartItem) => cartItem.title !== item.title);
         localStorage.setItem("cart", JSON.stringify(ViewArr));
@@ -337,10 +357,12 @@ viewBtn.addEventListener("click", () => {
 
     let removeCell = document.createElement("td");
     removeCell.className = "p-3 text-center";
+
     let removeBtn = document.createElement("button");
     removeBtn.innerText = "Remove";
     removeBtn.className =
       "bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600";
+
     removeBtn.addEventListener("click", () => {
       ViewArr = ViewArr.filter((cartItem) => cartItem.title !== item.title);
       localStorage.setItem("cart", JSON.stringify(ViewArr));
@@ -349,6 +371,7 @@ viewBtn.addEventListener("click", () => {
       cartCount.innerHTML = count;
       row.remove();
     });
+
     removeCell.appendChild(removeBtn);
 
     row.appendChild(imgCell);
@@ -356,6 +379,7 @@ viewBtn.addEventListener("click", () => {
     row.appendChild(descCell);
     row.appendChild(priceCell);
     row.appendChild(quantityCell);
+    row.appendChild(subTotalCell);
     row.appendChild(removeCell);
 
     tbody.appendChild(row);
@@ -365,4 +389,19 @@ viewBtn.addEventListener("click", () => {
   popupBox.appendChild(cartItems);
   popup.appendChild(popupBox);
   document.body.appendChild(popup);
+
+  popupBox.appendChild(payBtn);
+});
+let payBtn = document.createElement("button");
+payBtn.innerHTML = "Pay to Proceed";
+payBtn.className =
+  "bg-yellow-400 px-4 py-2 rounded-lg text-black font-bold hover:bg-yellow-500 transition mt-5";
+
+payBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  if (ViewArr.length == 0) {
+    alert("enmoty");
+  } else {
+    window.location.href = "form.html";
+  }
 });
