@@ -227,7 +227,6 @@ viewBtn.addEventListener("click", () => {
   popupBox.className =
     "bg-white p-6 rounded-lg shadow-lg w-full sm:w-3/4 lg:w-2/3 max-h-[80vh] overflow-y-auto border border-gray-300";
 
-  // Cart Header
   let cartHeader = document.createElement("div");
   cartHeader.className = "flex justify-between items-center mb-4 border-b pb-3";
 
@@ -238,7 +237,7 @@ viewBtn.addEventListener("click", () => {
   let closeBtn = document.createElement("button");
   closeBtn.innerText = "✕";
   closeBtn.className =
-    "text-white bg-red-500 px-3 py-1 rounded-full hover:bg-red-600 transition";
+    "text-white bg-red-500 px-3 py-1 rounded-full hover:bg-red-600 transition text-lg sm:text-base";
   closeBtn.addEventListener("click", () => {
     popup.remove();
   });
@@ -249,17 +248,17 @@ viewBtn.addEventListener("click", () => {
 
   let cartItems = document.createElement("table");
   cartItems.className =
-    "w-full border-collapse bg-white text-gray-700 border border-gray-300";
+    "w-full border-collapse bg-white text-gray-700 border border-gray-300 text-sm sm:text-base";
 
   let thead = document.createElement("thead");
   thead.className = "bg-gray-200";
   thead.innerHTML = `
-    <tr class="text-left border-b border-gray-300">
-      <th class="p-3 border-r">Image</th>
-      <th class="p-3 border-r">Title</th>
-      <th class="p-3 border-r">Description</th>
-      <th class="p-3 border-r">Price</th>
-      <th class="p-3 border-r text-center">Quantity</th>
+    <tr class="text-left border border-gray-300">
+      <th class="p-3 border">Image</th>
+      <th class="p-3 border">Title</th>
+      <th class="p-3 border">Description</th>
+      <th class="p-3 border">Price</th>
+      <th class="p-3 border text-center">Quantity</th>
       <th class="p-3">Action</th>
     </tr>
   `;
@@ -269,37 +268,39 @@ viewBtn.addEventListener("click", () => {
 
   ViewArr.forEach((item) => {
     let row = document.createElement("tr");
-    row.className = "border-t border-gray-300";
+    row.className = "border border-gray-300 flex flex-col sm:table-row";
 
     let imgCell = document.createElement("td");
     let img = document.createElement("img");
     img.src = item.image;
-    img.className = "w-16 h-16 object-cover rounded";
-    imgCell.className = "p-3 border-r";
+    img.className = "w-20 h-20 object-cover rounded mx-auto sm:w-16 sm:h-16";
+    imgCell.className = "p-3 border flex justify-center sm:table-cell";
     imgCell.appendChild(img);
 
     let titleCell = document.createElement("td");
     titleCell.innerText = item.title;
-    titleCell.className = "p-3 font-medium border-r";
+    titleCell.className = "p-3 font-medium border text-center sm:text-left";
 
     let descCell = document.createElement("td");
     descCell.innerText = item.description;
-    descCell.className = "p-3 text-sm border-r";
+    descCell.className =
+      "p-3 text-xs sm:text-sm border text-center sm:text-left";
 
     let priceCell = document.createElement("td");
     priceCell.innerText = `${item.price}`;
-    priceCell.className = "p-3 font-semibold border-r";
+    priceCell.className = "p-3 font-semibold border text-center";
 
     let quantityCell = document.createElement("td");
-    quantityCell.className = "p-3 border-r text-center";
+    quantityCell.className = "p-3 border text-center";
 
     let quantityWrapper = document.createElement("div");
-    quantityWrapper.className = "flex items-center justify-center space-x-2";
+    quantityWrapper.className =
+      "flex items-center justify-center space-x-2 sm:space-x-4";
 
     let minusBtn = document.createElement("button");
     minusBtn.innerText = "-";
     minusBtn.className =
-      "bg-gray-300 text-black px-3 py-1 rounded hover:bg-gray-400";
+      "bg-gray-300 text-black px-2 sm:px-3 py-1 rounded hover:bg-gray-400";
 
     let quantity = document.createElement("span");
     quantity.innerText = item.quantity || 1;
@@ -308,7 +309,7 @@ viewBtn.addEventListener("click", () => {
     let plusBtn = document.createElement("button");
     plusBtn.innerText = "+";
     plusBtn.className =
-      "bg-gray-300 text-black px-3 py-1 rounded hover:bg-gray-400";
+      "bg-gray-300 text-black px-2 sm:px-3 py-1 rounded hover:bg-gray-400";
 
     plusBtn.addEventListener("click", () => {
       item.quantity = (item.quantity || 1) + 1;
