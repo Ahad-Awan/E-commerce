@@ -15,7 +15,6 @@
       Go to Home
     </button>
 
-    <!-- Form -->
     <form
       id="userForm"
       class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md"
@@ -60,10 +59,7 @@
         <label class="block text-gray-700 font-medium mb-1"
           >Payment Method</label
         >
-        <select
-          id="payment"
-          class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none transition"
-        >
+        <select id="payment" class="w-full p-3 border rounded-lg">
           <option value="">Cash on Delivery</option>
           <option value="">Bank Account</option>
           <option value="">Jazz Cash</option>
@@ -84,17 +80,22 @@
         .addEventListener("submit", function (event) {
           event.preventDefault();
 
-          let name = document.getElementById("name").value.trim();
-          let number = document.getElementById("number").value.trim();
-          let address = document.getElementById("address").value.trim();
+          let nameInput = document.getElementById("name");
+          let numberInput = document.getElementById("number");
+          let addressInput = document.getElementById("address");
+
+          let name = nameInput.value.trim();
+          let number = numberInput.value.trim();
+          let address = addressInput.value.trim();
 
           if (name === "" || number === "" || address === "") {
             alert("All fields are required!");
             return;
           }
-
           alert("Form submitted successfully!");
-          this.reset();
+          nameInput.value = "";
+          numberInput.value = "";
+          addressInput.value = "";
         });
     </script>
   </body>
