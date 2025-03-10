@@ -1,5 +1,6 @@
 let productContainer = document.getElementById("productContainer");
 let viewBtn = document.getElementById("viewCart");
+let wishListBtn = document.getElementById("wishList");
 productContainer.className = "flex flex-wrap justify-center gap-6 mt-10";
 let cartCount = document.getElementById("cartCount");
 let ViewArr = JSON.parse(localStorage.getItem("cart")) || [];
@@ -206,28 +207,36 @@ products.forEach((product) => {
   price.innerHTML = `$${product.price}`;
   price.className = "text-base font-semibold text-gray-700";
 
+  let wishListBtn = document.createElement("button");
+  wishListBtn.innerHTML = "Add to WishList";
+  wishListBtn.className =
+    "bg-red-500 text-white px-3 py-2 rounded-md mt-3 w-full hover:bg-red-600 transition";
+
   let btn = document.createElement("button");
   btn.innerHTML = "Add to Cart";
   btn.className =
-    "bg-purple-500 text-white px-3 py-2 rounded-md mt-3 w-full hover:bg-purple-600 transition";
+    "bg-green-500 text-white px-3 py-2 rounded-md mt-3 w-full hover:bg-green-600 transition";
+
+  // add
 
   btn.addEventListener("click", () => {
     let alreadyInCart = ViewArr.find((item) => item.title === product.title);
     if (!alreadyInCart) {
       ViewArr.push(product);
-      localStorage.setItem("cart", JSON.stringify(ViewArr));
-      count = ViewArr.length;
-      localStorage.setItem("cartCount", count);
-      cartCount.innerHTML = count;
     } else {
-      alert("Already in Cart");
+      alreadyInCart.quantity++;
     }
+    localStorage.setItem("cart", JSON.stringify(ViewArr));
+    count = ViewArr.reduce((total, item) => total + item.quantity, 0);
+    localStorage.setItem("cartCount", count);
+    cartCount.innerHTML = count;
   });
 
   card.appendChild(img);
   card.appendChild(title);
   card.appendChild(description);
   card.appendChild(price);
+  card.appendChild(wishListBtn);
   card.appendChild(btn);
   productContainer.appendChild(card);
 });

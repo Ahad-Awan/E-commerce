@@ -9,26 +9,59 @@
   <body class="bg-gray-100">
     <!-- Navbar -->
     <nav class="bg-purple-600 p-5 shadow-md">
-      <ul class="flex justify-around items-center text-white font-semibold">
-        <li><a href="#" class="hover:text-yellow-300 transition">Home</a></li>
-        <li><a href="#" class="hover:text-yellow-300 transition">Shop</a></li>
-        <li><a href="#" class="hover:text-yellow-300 transition">About</a></li>
+      <ul
+        class="flex flex-wrap justify-center md:justify-between mx-4 md:mx-[4rem] items-center text-white font-semibold gap-3 sm:gap-6"
+      >
         <li>
-          <a href="#" class="hover:text-yellow-300 transition">Contact</a>
+          <a
+            href="#"
+            class="hover:text-yellow-300 transition text-sm md:text-base"
+            >Home</a
+          >
         </li>
-        <div class="relative">
+        <li>
+          <a
+            href="#"
+            class="hover:text-yellow-300 transition text-sm md:text-base"
+            >Shop</a
+          >
+        </li>
+        <li>
+          <a
+            href="#"
+            class="hover:text-yellow-300 transition text-sm md:text-base"
+            >About</a
+          >
+        </li>
+        <li>
+          <a
+            href="#"
+            class="hover:text-yellow-300 transition text-sm md:text-base"
+            >Contact</a
+          >
+        </li>
+
+        <div class="flex gap-3 sm:gap-5">
           <button
-            id="viewCart"
-            class="bg-yellow-400 px-4 py-2 rounded-lg text-black font-bold hover:bg-yellow-500 transition"
+            id="wishList"
+            class="bg-yellow-400 px-3 py-1 md:px-4 md:py-2 rounded-lg text-black font-bold text-xs md:text-base hover:bg-yellow-500 transition"
           >
-            View Cart
+            Wish List
           </button>
-          <span
-            id="cartCount"
-            class="absolute -top-3 -right-3 bg-red-500 text-white text-sm font-bold w-6 h-6 flex items-center justify-center rounded-full"
-          >
-            0
-          </span>
+          <div class="relative">
+            <button
+              id="viewCart"
+              class="bg-yellow-400 px-3 py-1 md:px-4 md:py-2 rounded-lg text-black font-bold text-xs md:text-base hover:bg-yellow-500 transition"
+            >
+              View Cart
+            </button>
+            <span
+              id="cartCount"
+              class="absolute -top-2 -right-2 bg-red-500 text-white text-xs md:text-sm font-bold w-5 h-5 md:w-6 md:h-6 flex items-center justify-center rounded-full"
+            >
+              0
+            </span>
+          </div>
         </div>
       </ul>
     </nav>
