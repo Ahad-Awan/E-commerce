@@ -273,6 +273,15 @@ viewBtn.addEventListener("click", () => {
 
   let tbody = document.createElement("tbody");
 
+  const updateTotalPrice = () => {
+    let totalPrice = 0;
+    ViewArr.forEach((item) => {
+      totalPrice += item.price * item.quantity;
+    });
+
+    totalPriceContainer.innerHTML = `Total Price: <span class="text-green-600">$${totalPrice}</span>`;
+  };
+
   ViewArr.forEach((item) => {
     let row = document.createElement("tr");
     row.className = "border border-gray-300 flex flex-col sm:table-row";
@@ -330,6 +339,7 @@ viewBtn.addEventListener("click", () => {
       item.quantity++;
       quantity.innerText = item.quantity;
       updateSubtotal();
+      updateTotalPrice();
     });
 
     minusBtn.addEventListener("click", () => {
@@ -337,6 +347,7 @@ viewBtn.addEventListener("click", () => {
         item.quantity--;
         quantity.innerText = item.quantity;
         updateSubtotal();
+        updateTotalPrice();
       } else {
         ViewArr = ViewArr.filter((cartItem) => cartItem.title !== item.title);
         localStorage.setItem("cart", JSON.stringify(ViewArr));
@@ -344,6 +355,7 @@ viewBtn.addEventListener("click", () => {
         localStorage.setItem("cartCount", count);
         cartCount.innerHTML = count;
         row.remove();
+        updateTotalPrice();
       }
     });
 
@@ -367,6 +379,7 @@ viewBtn.addEventListener("click", () => {
       localStorage.setItem("cartCount", count);
       cartCount.innerHTML = count;
       row.remove();
+      updateTotalPrice();
     });
 
     removeCell.appendChild(removeBtn);
@@ -384,11 +397,17 @@ viewBtn.addEventListener("click", () => {
 
   cartItems.appendChild(tbody);
   popupBox.appendChild(cartItems);
-  popup.appendChild(popupBox);
-  document.body.appendChild(popup);
+
+  let totalPriceContainer = document.createElement("div");
+  totalPriceContainer.className = "mt-4 text-lg font-bold text-gray-800";
+  popupBox.appendChild(totalPriceContainer);
+  updateTotalPrice();
 
   popupBox.appendChild(payBtn);
+  popup.appendChild(popupBox);
+  document.body.appendChild(popup);
 });
+
 let payBtn = document.createElement("button");
 payBtn.innerHTML = "Pay to Proceed";
 payBtn.className =
