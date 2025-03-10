@@ -245,11 +245,11 @@ viewBtn.addEventListener("click", () => {
 
   let popupBox = document.createElement("div");
   popupBox.className =
-    "bg-white p-6 rounded-lg shadow-lg w-full sm:w-3/4 lg:w-full max-h-[100vh] overflow-y-auto border border-gray-300 flex items-center flex-col";
+    "bg-white p-6 rounded-lg shadow-lg w-full sm:w-3/4 lg:w-full max-h-[100vh] overflow-y-auto border border-gray-300 flex flex-col items-center";
 
   let cartHeader = document.createElement("div");
   cartHeader.className =
-    "flex justify-between items-center mb-4 border-b pb-3 gap-20";
+    "flex justify-between items-center mb-4 border-b pb-3 w-full px-4";
 
   let heading = document.createElement("h2");
   heading.innerText = "Your Cart";
@@ -259,6 +259,7 @@ viewBtn.addEventListener("click", () => {
   closeBtn.innerText = "✕";
   closeBtn.className =
     "text-white bg-red-500 px-3 py-1 rounded-full hover:bg-red-600 transition text-lg sm:text-base";
+
   closeBtn.addEventListener("click", () => {
     popup.remove();
   });
@@ -329,6 +330,7 @@ viewBtn.addEventListener("click", () => {
 
     let subTotalCell = document.createElement("td");
     subTotalCell.className = "p-3 border font-semibold text-center";
+
     let updateSubtotal = () => {
       let subTotal = item.price * item.quantity;
       subTotalCell.innerHTML = `Sub Total: $${subTotal}`;
