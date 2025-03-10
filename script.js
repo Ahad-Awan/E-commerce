@@ -203,9 +203,7 @@ products.forEach((product) => {
   description.className = "text-sm text-gray-600";
 
   let price = document.createElement("p");
-  let dollar = document.createElement("span");
-  dollar.innerHTML = "$";
-  price.innerHTML = product.price;
+  price.innerHTML = `$${product.price}`;
   price.className = "text-base font-semibold text-gray-700";
 
   let btn = document.createElement("button");
@@ -229,7 +227,6 @@ products.forEach((product) => {
   card.appendChild(img);
   card.appendChild(title);
   card.appendChild(description);
-  card.appendChild(dollar);
   card.appendChild(price);
   card.appendChild(btn);
   productContainer.appendChild(card);
@@ -400,7 +397,7 @@ payBtn.className =
 payBtn.addEventListener("click", (e) => {
   e.preventDefault();
   if (ViewArr.length == 0) {
-    alert("enmoty");
+    alert("No product in cart ");
   } else {
     window.location.href = "form.html";
   }

@@ -3,18 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Modern Form Validation</title>
+    <title>Simple Form Validation</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body
-    class="flex justify-center items-center min-h-screen bg-gradient-to-r from-blue-400 to-purple-500 p-4"
-  >
+  <body class="flex flex-col items-center min-h-screen bg-gray-200 p-6">
+    <!-- Home Button -->
+    <button
+      onclick="window.location.href='index.html'"
+      class="mb-6 px-5 py-2 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 transition duration-300 shadow-md"
+    >
+      Go to Home
+    </button>
+
+    <!-- Form -->
     <form
       id="userForm"
-      class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md transform transition duration-500 hover:scale-105"
+      class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md"
     >
       <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">
-        Enter Your Details
+        User Details
       </h2>
 
       <div class="mb-4">
@@ -22,8 +29,8 @@
         <input
           type="text"
           id="name"
-          placeholder="Enter Your Name"
-          class="w-full p-3 border rounded-lg focus:ring-4 focus:ring-blue-400 focus:outline-none transition duration-300"
+          placeholder="Enter your name"
+          class="w-full p-3 border rounded-lg"
           required
         />
       </div>
@@ -33,8 +40,8 @@
         <input
           type="number"
           id="number"
-          placeholder="Enter Your Number"
-          class="w-full p-3 border rounded-lg focus:ring-4 focus:ring-blue-400 focus:outline-none transition duration-300"
+          placeholder="Enter your number"
+          class="w-full p-3 border rounded-lg"
           required
         />
       </div>
@@ -43,8 +50,8 @@
         <label class="block text-gray-700 font-medium mb-1">Address</label>
         <textarea
           id="address"
-          placeholder="Enter Your Address"
-          class="w-full p-3 border rounded-lg focus:ring-4 focus:ring-blue-400 focus:outline-none transition duration-300"
+          placeholder="Enter your address"
+          class="w-full p-3 border rounded-lg"
           required
         ></textarea>
       </div>
@@ -54,9 +61,8 @@
           >Payment Method</label
         >
         <select
-          name="select"
           id="payment"
-          class="w-full p-3 border rounded-lg focus:ring-4 focus:ring-blue-400 focus:outline-none transition duration-300"
+          class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none transition"
         >
           <option value="">Cash on Delivery</option>
           <option value="">Bank Account</option>
@@ -66,15 +72,10 @@
 
       <button
         type="submit"
-        class="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white p-3 rounded-lg font-bold hover:opacity-90 transition duration-300"
+        class="w-full bg-purple-500 text-white p-3 rounded-lg font-semibold hover:bg-purple-600 transition duration-300 shadow-md"
       >
         Submit
       </button>
-
-      <p
-        id="message"
-        class="text-red-500 mt-4 text-center font-medium transition duration-300"
-      ></p>
     </form>
 
     <script>
@@ -83,30 +84,17 @@
         .addEventListener("submit", function (event) {
           event.preventDefault();
 
-          let name = document.getElementById("name");
-          let password = document.getElementById("number");
-          let address = document.getElementById("address");
-          let payment = document.getElementById("payment");
-          let message = document.getElementById("message");
+          let name = document.getElementById("name").value.trim();
+          let number = document.getElementById("number").value.trim();
+          let address = document.getElementById("address").value.trim();
 
-          if (
-            name.value.trim() === "" ||
-            password.value.trim() === "" ||
-            address.value.trim() === ""
-          ) {
-            message.textContent = "All fields are required!";
-            message.classList.add("text-red-500");
+          if (name === "" || number === "" || address === "") {
+            alert("All fields are required!");
             return;
           }
 
-          message.textContent = "Form submitted successfully!";
-          message.classList.remove("text-red-500");
-          message.classList.add("text-green-500");
-
-          name.value = "";
-          password.value = "";
-          address.value = "";
-          payment.selectedIndex = 0;
+          alert("Form submitted successfully!");
+          this.reset();
         });
     </script>
   </body>
