@@ -1,8 +1,8 @@
 let productContainer = document.getElementById("productContainer");
+productContainer.className = "flex flex-wrap justify-center gap-6 mt-10";
 let viewBtn = document.getElementById("viewCart");
 let wishListBtn = document.getElementById("wishList");
-let wishListArr = [];
-productContainer.className = "flex flex-wrap justify-center gap-6 mt-10";
+let wishlistArr = JSON.parse(localStorage.getItem("wishlist")) || [];
 let cartCount = document.getElementById("cartCount");
 let ViewArr = JSON.parse(localStorage.getItem("cart")) || [];
 let count = ViewArr.length;
@@ -214,9 +214,19 @@ products.forEach((product) => {
     "bg-red-500 text-white px-3 py-2 rounded-md mt-3 w-full hover:bg-red-600 transition";
 
   addToWishlist.addEventListener("click", () => {
-    wishListArr.push(product);
-    localStorage.setItem("wishlist", JSON.stringify(wishListArr));
-    console.log(wishListArr, "Wishlist Updated");
+    let alreadyInWishlist = wishlistArr.find(
+      (item) => item.title === product.title
+    );
+
+    if (!alreadyInWishlist) {
+      wishlistArr.push(product);
+
+      localStorage.setItem("wishlist", JSON.stringify(wishlistArr));
+      console.log(wishlistArr);
+      alert("Product added to wishlist!");
+    } else {
+      alert("This product is already in your wishlist!");
+    }
   });
 
   let btn = document.createElement("button");
@@ -248,46 +258,68 @@ products.forEach((product) => {
 
 wishListBtn.addEventListener("click", () => {
   productContainer.innerHTML = "";
+  let backToHomeContainer = document.createElement("div");
+  backToHomeContainer.className = "flex justify-center w-full mb-5";
 
-  wishListArr.map((product, index) => {
-    let card = document.createElement("div");
-    card.className =
-      "bg-white shadow-lg rounded-lg p-4 border border-gray-300 w-64 transition transform hover:scale-105";
+  let backToHomeBtn = document.createElement("button");
+  backToHomeBtn.innerHTML = "Back to Home";
+  backToHomeBtn.className =
+    "bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition";
 
-    let img = document.createElement("img");
-    img.src = product.image;
-    img.className = "rounded-md mb-3 w-full h-40 object-cover";
-
-    let title = document.createElement("h1");
-    title.innerHTML = product.title;
-    title.className = "text-lg font-bold text-gray-800";
-
-    let description = document.createElement("p");
-    description.innerHTML = product.description;
-    description.className = "text-sm text-gray-600";
-
-    let price = document.createElement("p");
-    price.innerHTML = `$${product.price}`;
-    price.className = "text-base font-semibold text-gray-700";
-
-    let removeBtn = document.createElement("button");
-    removeBtn.innerHTML = "Remove";
-    removeBtn.className =
-      "bg-red-500 text-white px-3 py-2 rounded-md mt-3 w-full hover:bg-red-700 transition";
-
-    removeBtn.addEventListener("click", () => {
-      wishListArr.splice(index, 1);
-      localStorage.setItem("wishlist", JSON.stringify(wishListArr));
-      card.remove();
-    });
-
-    card.appendChild(img);
-    card.appendChild(title);
-    card.appendChild(description);
-    card.appendChild(price);
-    card.appendChild(removeBtn);
-    productContainer.appendChild(card);
+  backToHomeBtn.addEventListener("click", () => {
+    location.reload();
   });
+
+  backToHomeContainer.appendChild(backToHomeBtn);
+  productContainer.appendChild(backToHomeContainer);
+
+  if (wishlistArr.length === 0) {
+    let emptyMessage = document.createElement("p");
+    emptyMessage.innerHTML = "Your wishlist is empty!";
+    emptyMessage.className =
+      "text-xl text-gray-600 font-semibold mt-5 text-center";
+    productContainer.appendChild(emptyMessage);
+  } else {
+    wishlistArr.map((product, index) => {
+      let card = document.createElement("div");
+      card.className =
+        "bg-white shadow-lg rounded-lg p-4 border border-gray-300 w-64 transition transform hover:scale-105";
+
+      let img = document.createElement("img");
+      img.src = product.image;
+      img.className = "rounded-md mb-3 w-full h-40 object-cover";
+
+      let title = document.createElement("h1");
+      title.innerHTML = product.title;
+      title.className = "text-lg font-bold text-gray-800";
+
+      let description = document.createElement("p");
+      description.innerHTML = product.description;
+      description.className = "text-sm text-gray-600";
+
+      let price = document.createElement("p");
+      price.innerHTML = `$${product.price}`;
+      price.className = "text-base font-semibold text-gray-700";
+
+      let removeBtn = document.createElement("button");
+      removeBtn.innerHTML = "Remove from Wishlist";
+      removeBtn.className =
+        "bg-red-500 text-white px-3 py-2 rounded-md mt-3 w-full hover:bg-red-600 transition";
+
+      removeBtn.addEventListener("click", () => {
+        wishlistArr.splice(index, 1);
+        localStorage.setItem("wishlist", JSON.stringify(wishlistArr));
+        wishListBtn.click();
+      });
+
+      card.appendChild(img);
+      card.appendChild(title);
+      card.appendChild(description);
+      card.appendChild(price);
+      card.appendChild(removeBtn);
+      productContainer.appendChild(card);
+    });
+  }
 });
 
 viewBtn.addEventListener("click", () => {
