@@ -1,6 +1,7 @@
 let productContainer = document.getElementById("productContainer");
 let viewBtn = document.getElementById("viewCart");
 let wishListBtn = document.getElementById("wishList");
+let wishListArr = [];
 productContainer.className = "flex flex-wrap justify-center gap-6 mt-10";
 let cartCount = document.getElementById("cartCount");
 let ViewArr = JSON.parse(localStorage.getItem("cart")) || [];
@@ -213,14 +214,15 @@ products.forEach((product) => {
     "bg-red-500 text-white px-3 py-2 rounded-md mt-3 w-full hover:bg-red-600 transition";
 
   addToWishlist.addEventListener("click", () => {
-    console.log("btn ");
+    wishListArr.push(product);
+    localStorage.setItem("wishlist", JSON.stringify(wishListArr));
+    console.log(wishListArr, "Wishlist Updated");
   });
+
   let btn = document.createElement("button");
   btn.innerHTML = "Add to Cart";
   btn.className =
     "bg-green-500 text-white px-3 py-2 rounded-md mt-3 w-full hover:bg-green-600 transition";
-
-  // add
 
   btn.addEventListener("click", () => {
     let alreadyInCart = ViewArr.find((item) => item.title === product.title);
@@ -242,6 +244,50 @@ products.forEach((product) => {
   card.appendChild(addToWishlist);
   card.appendChild(btn);
   productContainer.appendChild(card);
+});
+
+wishListBtn.addEventListener("click", () => {
+  productContainer.innerHTML = "";
+
+  wishListArr.map((product, index) => {
+    let card = document.createElement("div");
+    card.className =
+      "bg-white shadow-lg rounded-lg p-4 border border-gray-300 w-64 transition transform hover:scale-105";
+
+    let img = document.createElement("img");
+    img.src = product.image;
+    img.className = "rounded-md mb-3 w-full h-40 object-cover";
+
+    let title = document.createElement("h1");
+    title.innerHTML = product.title;
+    title.className = "text-lg font-bold text-gray-800";
+
+    let description = document.createElement("p");
+    description.innerHTML = product.description;
+    description.className = "text-sm text-gray-600";
+
+    let price = document.createElement("p");
+    price.innerHTML = `$${product.price}`;
+    price.className = "text-base font-semibold text-gray-700";
+
+    let removeBtn = document.createElement("button");
+    removeBtn.innerHTML = "Remove";
+    removeBtn.className =
+      "bg-red-500 text-white px-3 py-2 rounded-md mt-3 w-full hover:bg-red-700 transition";
+
+    removeBtn.addEventListener("click", () => {
+      wishListArr.splice(index, 1);
+      localStorage.setItem("wishlist", JSON.stringify(wishListArr));
+      card.remove();
+    });
+
+    card.appendChild(img);
+    card.appendChild(title);
+    card.appendChild(description);
+    card.appendChild(price);
+    card.appendChild(removeBtn);
+    productContainer.appendChild(card);
+  });
 });
 
 viewBtn.addEventListener("click", () => {
@@ -440,55 +486,4 @@ viewBtn.addEventListener("click", () => {
   popupBox.appendChild(payBtn);
   popup.appendChild(popupBox);
   document.body.appendChild(popup);
-});
-
-wishListBtn.addEventListener("click", () => {
-  let existingPopup = document.getElementById("cartPopup");
-  if (existingPopup) {
-    existingPopup.remove();
-  }
-
-  let popup = document.createElement("div");
-  popup.id = "cartPopup";
-  popup.className =
-    "fixed inset-0 bg-black/50 flex justify-center items-center p-4";
-
-  let popupBox = document.createElement("div");
-  popupBox.className =
-    "bg-white p-6 rounded-lg shadow-lg w-full sm:w-3/4 lg:w-full max-h-[100vh] overflow-y-auto border border-gray-300 flex flex-col items-center";
-
-  let cartHeader = document.createElement("div");
-  cartHeader.className =
-    "flex justify-between items-center mb-4 border-b pb-3 w-full px-4";
-
-  let heading = document.createElement("h2");
-  heading.innerText = "Wishlist Cart";
-  heading.className = "text-2xl font-bold text-gray-800";
-
-  let closeBtn = document.createElement("button");
-  closeBtn.innerText = "✕";
-  closeBtn.className =
-    "text-white bg-red-500 px-3 py-1 rounded-full hover:bg-red-600 transition text-lg sm:text-base";
-
-  cartHeader.appendChild(heading);
-  cartHeader.appendChild(closeBtn);
-  popupBox.appendChild(cartHeader);
-  popup.appendChild(popupBox);
-  document.body.appendChild(popup);
-
-  let backToHomeBtn = document.createElement("button");
-  backToHomeBtn.innerHTML = "Back to Home";
-  backToHomeBtn.className =
-    "bg-yellow-400 px-4 py-2 rounded-lg text-black font-bold hover:bg-yellow-500 transition mt-5";
-
-  backToHomeBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    window.location.href = "index.html";
-  });
-
-  popupBox.appendChild(backToHomeBtn);
-
-  closeBtn.addEventListener("click", () => {
-    popup.remove();
-  });
 });
