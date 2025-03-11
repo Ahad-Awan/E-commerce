@@ -207,11 +207,14 @@ products.forEach((product) => {
   price.innerHTML = `$${product.price}`;
   price.className = "text-base font-semibold text-gray-700";
 
-  let wishListBtn = document.createElement("button");
-  wishListBtn.innerHTML = "Add to WishList";
-  wishListBtn.className =
+  let addToWishlist = document.createElement("button");
+  addToWishlist.innerHTML = "Add to WishList";
+  addToWishlist.className =
     "bg-red-500 text-white px-3 py-2 rounded-md mt-3 w-full hover:bg-red-600 transition";
 
+  addToWishlist.addEventListener("click", () => {
+    console.log("btn ");
+  });
   let btn = document.createElement("button");
   btn.innerHTML = "Add to Cart";
   btn.className =
@@ -236,7 +239,7 @@ products.forEach((product) => {
   card.appendChild(title);
   card.appendChild(description);
   card.appendChild(price);
-  card.appendChild(wishListBtn);
+  card.appendChild(addToWishlist);
   card.appendChild(btn);
   productContainer.appendChild(card);
 });
@@ -384,13 +387,19 @@ viewBtn.addEventListener("click", () => {
       "bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600";
 
     removeBtn.addEventListener("click", () => {
-      ViewArr = ViewArr.filter((cartItem) => cartItem.title !== item.title);
+      ViewArr = ViewArr.filter((cartItem) => {
+        if (cartItem.title === item.title) {
+          cartItem.quantity = 1;
+        }
+        return cartItem.title !== item.title;
+      });
+
       localStorage.setItem("cart", JSON.stringify(ViewArr));
       count = ViewArr.length;
       localStorage.setItem("cartCount", count);
       cartCount.innerHTML = count;
-      row.remove();
       updateTotalPrice();
+      row.remove();
     });
 
     removeCell.appendChild(removeBtn);
@@ -414,21 +423,72 @@ viewBtn.addEventListener("click", () => {
   popupBox.appendChild(totalPriceContainer);
   updateTotalPrice();
 
+  let payBtn = document.createElement("button");
+  payBtn.innerHTML = "Pay to Proceed";
+  payBtn.className =
+    "bg-yellow-400 px-4 py-2 rounded-lg text-black font-bold hover:bg-yellow-500 transition mt-5";
+
+  payBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (ViewArr.length == 0) {
+      alert("No product in cart ");
+    } else {
+      window.location.href = "form.html";
+    }
+  });
+
   popupBox.appendChild(payBtn);
   popup.appendChild(popupBox);
   document.body.appendChild(popup);
 });
 
-let payBtn = document.createElement("button");
-payBtn.innerHTML = "Pay to Proceed";
-payBtn.className =
-  "bg-yellow-400 px-4 py-2 rounded-lg text-black font-bold hover:bg-yellow-500 transition mt-5";
-
-payBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  if (ViewArr.length == 0) {
-    alert("No product in cart ");
-  } else {
-    window.location.href = "form.html";
+wishListBtn.addEventListener("click", () => {
+  let existingPopup = document.getElementById("cartPopup");
+  if (existingPopup) {
+    existingPopup.remove();
   }
+
+  let popup = document.createElement("div");
+  popup.id = "cartPopup";
+  popup.className =
+    "fixed inset-0 bg-black/50 flex justify-center items-center p-4";
+
+  let popupBox = document.createElement("div");
+  popupBox.className =
+    "bg-white p-6 rounded-lg shadow-lg w-full sm:w-3/4 lg:w-full max-h-[100vh] overflow-y-auto border border-gray-300 flex flex-col items-center";
+
+  let cartHeader = document.createElement("div");
+  cartHeader.className =
+    "flex justify-between items-center mb-4 border-b pb-3 w-full px-4";
+
+  let heading = document.createElement("h2");
+  heading.innerText = "Wishlist Cart";
+  heading.className = "text-2xl font-bold text-gray-800";
+
+  let closeBtn = document.createElement("button");
+  closeBtn.innerText = "✕";
+  closeBtn.className =
+    "text-white bg-red-500 px-3 py-1 rounded-full hover:bg-red-600 transition text-lg sm:text-base";
+
+  cartHeader.appendChild(heading);
+  cartHeader.appendChild(closeBtn);
+  popupBox.appendChild(cartHeader);
+  popup.appendChild(popupBox);
+  document.body.appendChild(popup);
+
+  let backToHomeBtn = document.createElement("button");
+  backToHomeBtn.innerHTML = "Back to Home";
+  backToHomeBtn.className =
+    "bg-yellow-400 px-4 py-2 rounded-lg text-black font-bold hover:bg-yellow-500 transition mt-5";
+
+  backToHomeBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.location.href = "index.html";
+  });
+
+  popupBox.appendChild(backToHomeBtn);
+
+  closeBtn.addEventListener("click", () => {
+    popup.remove();
+  });
 });
