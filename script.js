@@ -8,253 +8,263 @@ let ViewArr = JSON.parse(localStorage.getItem("cart")) || [];
 let count = ViewArr.length;
 cartCount.innerHTML = count;
 
-const products = [
-  {
-    image:
-      "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
-    title: "Product 1",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "20",
-    quantity: 1,
-  },
-  {
-    image:
-      "https://t3.ftcdn.net/jpg/02/36/99/22/360_F_236992283_sNOxCVQeFLd5pdqaKGh8DRGMZy7P4XKm.jpg",
-    title: "Product 2",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "25",
-    quantity: 1,
-  },
-  {
-    image:
-      "https://media.istockphoto.com/id/1373017594/photo/headphones-on-the-orange-color-background.jpg?s=612x612&w=0&k=20&c=9SEBT-6kUjIBy33Ga-C9n6CQMd7FOUk3yC89mOAa0ts=",
-    title: "Product 3",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "50",
-    quantity: 1,
-  },
-  {
-    image: "https://upload.wikimedia.org/wikipedia/commons/4/44/Jelly_cc11.jpg",
-    title: "Product 4",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "100",
-    quantity: 1,
-  },
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Labrador_Retriever_portrait.jpg/1200px-Labrador_Retriever_portrait.jpg",
-    title: "Product 5",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "500",
-    quantity: 1,
-  },
-  {
-    image:
-      "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
-    title: "Product 6",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "70",
-    quantity: 1,
-  },
-  {
-    image:
-      "https://t3.ftcdn.net/jpg/02/36/99/22/360_F_236992283_sNOxCVQeFLd5pdqaKGh8DRGMZy7P4XKm.jpg",
-    title: "Product 7",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "120",
-    quantity: 1,
-  },
-  {
-    image:
-      "https://media.istockphoto.com/id/1373017594/photo/headphones-on-the-orange-color-background.jpg?s=612x612&w=0&k=20&c=9SEBT-6kUjIBy33Ga-C9n6CQMd7FOUk3yC89mOAa0ts=",
-    title: "Product 8",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "50",
-    quantity: 1,
-  },
-  {
-    image: "https://upload.wikimedia.org/wikipedia/commons/4/44/Jelly_cc11.jpg",
-    title: "Product 9",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "400",
-    quantity: 1,
-  },
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Labrador_Retriever_portrait.jpg/1200px-Labrador_Retriever_portrait.jpg",
-    title: "Product 10",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "500",
-    quantity: 1,
-  },
-  {
-    image:
-      "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
-    title: "Product 11",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "220",
-    quantity: 1,
-  },
-  {
-    image:
-      "https://t3.ftcdn.net/jpg/02/36/99/22/360_F_236992283_sNOxCVQeFLd5pdqaKGh8DRGMZy7P4XKm.jpg",
-    title: "Product 12",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "325",
-    quantity: 1,
-  },
-  {
-    image:
-      "https://media.istockphoto.com/id/1373017594/photo/headphones-on-the-orange-color-background.jpg?s=612x612&w=0&k=20&c=9SEBT-6kUjIBy33Ga-C9n6CQMd7FOUk3yC89mOAa0ts=",
-    title: "Product 13",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "450",
-    quantity: 1,
-  },
-  {
-    image: "https://upload.wikimedia.org/wikipedia/commons/4/44/Jelly_cc11.jpg",
-    title: "Product 14",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "100",
-    quantity: 1,
-  },
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Labrador_Retriever_portrait.jpg/1200px-Labrador_Retriever_portrait.jpg",
-    title: "Product 15",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "600",
-    quantity: 1,
-  },
-  {
-    image:
-      "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
-    title: "Product 16",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "200",
-    quantity: 1,
-  },
-  {
-    image:
-      "https://t3.ftcdn.net/jpg/02/36/99/22/360_F_236992283_sNOxCVQeFLd5pdqaKGh8DRGMZy7P4XKm.jpg",
-    title: "Product 17",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "25",
-    quantity: 1,
-  },
-  {
-    image:
-      "https://media.istockphoto.com/id/1373017594/photo/headphones-on-the-orange-color-background.jpg?s=612x612&w=0&k=20&c=9SEBT-6kUjIBy33Ga-C9n6CQMd7FOUk3yC89mOAa0ts=",
-    title: "Product 18",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "50",
-    quantity: 1,
-  },
-  {
-    image: "https://upload.wikimedia.org/wikipedia/commons/4/44/Jelly_cc11.jpg",
-    title: "Product 19",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "100",
-    quantity: 1,
-  },
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Labrador_Retriever_portrait.jpg/1200px-Labrador_Retriever_portrait.jpg",
-    title: "Product 20",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
-    price: "700",
-    quantity: 1,
-  },
-];
+// const products = [
+//   {
+//     image:
+//       "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
+//     title: "Product 1",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
+//     price: "20",
+//     quantity: 1,
+//   },
+//   {
+//     image:
+//       "https://t3.ftcdn.net/jpg/02/36/99/22/360_F_236992283_sNOxCVQeFLd5pdqaKGh8DRGMZy7P4XKm.jpg",
+//     title: "Product 2",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
+//     price: "25",
+//     quantity: 1,
+//   },
+//   {
+//     image:
+//       "https://media.istockphoto.com/id/1373017594/photo/headphones-on-the-orange-color-background.jpg?s=612x612&w=0&k=20&c=9SEBT-6kUjIBy33Ga-C9n6CQMd7FOUk3yC89mOAa0ts=",
+//     title: "Product 3",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
+//     price: "50",
+//     quantity: 1,
+//   },
+//   {
+//     image: "https://upload.wikimedia.org/wikipedia/commons/4/44/Jelly_cc11.jpg",
+//     title: "Product 4",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
+//     price: "100",
+//     quantity: 1,
+//   },
+//   {
+//     image:
+//       "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Labrador_Retriever_portrait.jpg/1200px-Labrador_Retriever_portrait.jpg",
+//     title: "Product 5",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
+//     price: "500",
+//     quantity: 1,
+//   },
+//   {
+//     image:
+//       "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
+//     title: "Product 6",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
+//     price: "70",
+//     quantity: 1,
+//   },
+//   {
+//     image:
+//       "https://t3.ftcdn.net/jpg/02/36/99/22/360_F_236992283_sNOxCVQeFLd5pdqaKGh8DRGMZy7P4XKm.jpg",
+//     title: "Product 7",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
+//     price: "120",
+//     quantity: 1,
+//   },
+//   {
+//     image:
+//       "https://media.istockphoto.com/id/1373017594/photo/headphones-on-the-orange-color-background.jpg?s=612x612&w=0&k=20&c=9SEBT-6kUjIBy33Ga-C9n6CQMd7FOUk3yC89mOAa0ts=",
+//     title: "Product 8",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
+//     price: "50",
+//     quantity: 1,
+//   },
+//   {
+//     image: "https://upload.wikimedia.org/wikipedia/commons/4/44/Jelly_cc11.jpg",
+//     title: "Product 9",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
+//     price: "400",
+//     quantity: 1,
+//   },
+//   {
+//     image:
+//       "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Labrador_Retriever_portrait.jpg/1200px-Labrador_Retriever_portrait.jpg",
+//     title: "Product 10",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
+//     price: "500",
+//     quantity: 1,
+//   },
+//   {
+//     image:
+//       "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
+//     title: "Product 11",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
+//     price: "220",
+//     quantity: 1,
+//   },
+//   {
+//     image:
+//       "https://t3.ftcdn.net/jpg/02/36/99/22/360_F_236992283_sNOxCVQeFLd5pdqaKGh8DRGMZy7P4XKm.jpg",
+//     title: "Product 12",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
+//     price: "325",
+//     quantity: 1,
+//   },
+//   {
+//     image:
+//       "https://media.istockphoto.com/id/1373017594/photo/headphones-on-the-orange-color-background.jpg?s=612x612&w=0&k=20&c=9SEBT-6kUjIBy33Ga-C9n6CQMd7FOUk3yC89mOAa0ts=",
+//     title: "Product 13",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
+//     price: "450",
+//     quantity: 1,
+//   },
+//   {
+//     image: "https://upload.wikimedia.org/wikipedia/commons/4/44/Jelly_cc11.jpg",
+//     title: "Product 14",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
+//     price: "100",
+//     quantity: 1,
+//   },
+//   {
+//     image:
+//       "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Labrador_Retriever_portrait.jpg/1200px-Labrador_Retriever_portrait.jpg",
+//     title: "Product 15",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
+//     price: "600",
+//     quantity: 1,
+//   },
+//   {
+//     image:
+//       "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
+//     title: "Product 16",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
+//     price: "200",
+//     quantity: 1,
+//   },
+//   {
+//     image:
+//       "https://t3.ftcdn.net/jpg/02/36/99/22/360_F_236992283_sNOxCVQeFLd5pdqaKGh8DRGMZy7P4XKm.jpg",
+//     title: "Product 17",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
+//     price: "25",
+//     quantity: 1,
+//   },
+//   {
+//     image:
+//       "https://media.istockphoto.com/id/1373017594/photo/headphones-on-the-orange-color-background.jpg?s=612x612&w=0&k=20&c=9SEBT-6kUjIBy33Ga-C9n6CQMd7FOUk3yC89mOAa0ts=",
+//     title: "Product 18",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
+//     price: "50",
+//     quantity: 1,
+//   },
+//   {
+//     image: "https://upload.wikimedia.org/wikipedia/commons/4/44/Jelly_cc11.jpg",
+//     title: "Product 19",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
+//     price: "100",
+//     quantity: 1,
+//   },
+//   {
+//     image:
+//       "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Labrador_Retriever_portrait.jpg/1200px-Labrador_Retriever_portrait.jpg",
+//     title: "Product 20",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum",
+//     price: "700",
+//     quantity: 1,
+//   },
+// ];
 
-products.forEach((product) => {
-  let card = document.createElement("div");
-  card.className =
-    "bg-white shadow-lg rounded-lg p-4 border border-gray-300 w-64 transition transform hover:scale-105";
+// ✅ Fetch Data from API
 
-  let img = document.createElement("img");
-  img.src = product.image;
-  img.className = "rounded-md mb-3 w-full h-40 object-cover";
+fetch("https://fakestoreapi.com/products")
+  .then((res) => res.json())
+  .then((data) => renderProducts(data))
+  .catch((err) => console.log("Error fetching data:", err));
 
-  let title = document.createElement("h1");
-  title.innerHTML = product.title;
-  title.className = "text-lg font-bold text-gray-800";
+function renderProducts(products) {
+  productContainer.innerHTML = "";
 
-  let description = document.createElement("p");
-  description.innerHTML = product.description;
-  description.className = "text-sm text-gray-600";
+  products.forEach((product) => {
+    let card = document.createElement("div");
+    card.className =
+      "bg-white shadow-lg rounded-lg p-4 border border-gray-300 w-full max-w-xs min-h-[200px] flex flex-col justify-between transition transform hover:scale-105 hover:shadow-xl";
 
-  let price = document.createElement("p");
-  price.innerHTML = `$${product.price}`;
-  price.className = "text-base font-semibold text-gray-700";
+    let img = document.createElement("img");
+    img.src = product.image;
+    img.className = "rounded-t-lg w-full h-auto aspect-[4/3] object-cover";
 
-  let addToWishlist = document.createElement("button");
-  addToWishlist.innerHTML = "Add to WishList";
-  addToWishlist.className =
-    "bg-red-500 text-white px-3 py-2 rounded-md mt-3 w-full hover:bg-red-600 transition";
+    let title = document.createElement("h1");
+    title.innerHTML = product.title;
+    title.className = "text-lg font-bold text-gray-800";
 
-  addToWishlist.addEventListener("click", () => {
-    let alreadyInWishlist = wishlistArr.find(
-      (item) => item.title === product.title
-    );
+    let description = document.createElement("p");
+    description.innerHTML = product.description;
+    description.className = "text-sm text-gray-600";
 
-    if (!alreadyInWishlist) {
-      wishlistArr.push(product);
+    let price = document.createElement("p");
+    price.innerHTML = `$${product.price}`;
+    price.className = "text-base font-semibold text-gray-700";
 
-      localStorage.setItem("wishlist", JSON.stringify(wishlistArr));
-      console.log(wishlistArr);
-      alert("Product added to wishlist!");
-    } else {
-      alert("This product is already in your wishlist!");
-    }
+    let addToWishlist = document.createElement("button");
+    addToWishlist.innerHTML = "Add to WishList";
+    addToWishlist.className =
+      "bg-red-500 text-white px-3 py-2 rounded-md mt-3 w-full hover:bg-red-600 transition";
+
+    addToWishlist.addEventListener("click", () => {
+      let alreadyInWishlist = wishlistArr.find(
+        (item) => item.id === product.id
+      );
+
+      if (!alreadyInWishlist) {
+        wishlistArr.push(product);
+        localStorage.setItem("wishlist", JSON.stringify(wishlistArr));
+        alert("Product added to wishlist!");
+      } else {
+        alert("This product is already in your wishlist!");
+      }
+    });
+
+    let btn = document.createElement("button");
+    btn.innerHTML = "Add to Cart";
+    btn.className =
+      "bg-green-500 text-white px-3 py-2 rounded-md mt-3 w-full hover:bg-green-600 transition";
+
+    btn.addEventListener("click", () => {
+      let alreadyInCart = ViewArr.find((item) => item.id === product.id);
+      if (!alreadyInCart) {
+        product.quantity = 1;
+        ViewArr.push(product);
+      } else {
+        alreadyInCart.quantity++;
+      }
+      localStorage.setItem("cart", JSON.stringify(ViewArr));
+      count = ViewArr.reduce((total, item) => total + item.quantity, 0);
+      localStorage.setItem("cartCount", count);
+      cartCount.innerHTML = count;
+    });
+
+    card.appendChild(img);
+    card.appendChild(title);
+    card.appendChild(description);
+    card.appendChild(price);
+    card.appendChild(addToWishlist);
+    card.appendChild(btn);
+    productContainer.appendChild(card);
   });
-
-  let btn = document.createElement("button");
-  btn.innerHTML = "Add to Cart";
-  btn.className =
-    "bg-green-500 text-white px-3 py-2 rounded-md mt-3 w-full hover:bg-green-600 transition";
-
-  btn.addEventListener("click", () => {
-    let alreadyInCart = ViewArr.find((item) => item.title === product.title);
-    if (!alreadyInCart) {
-      ViewArr.push(product);
-    } else {
-      alreadyInCart.quantity++;
-    }
-    localStorage.setItem("cart", JSON.stringify(ViewArr));
-    count = ViewArr.reduce((total, item) => total + item.quantity, 0);
-    localStorage.setItem("cartCount", count);
-    cartCount.innerHTML = count;
-  });
-
-  card.appendChild(img);
-  card.appendChild(title);
-  card.appendChild(description);
-  card.appendChild(price);
-  card.appendChild(addToWishlist);
-  card.appendChild(btn);
-  productContainer.appendChild(card);
-});
+}
 
 wishListBtn.addEventListener("click", () => {
   productContainer.innerHTML = "";
