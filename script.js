@@ -387,13 +387,6 @@ viewBtn.addEventListener("click", () => {
     let row = document.createElement("tr");
     row.className = "border border-gray-300 flex flex-col sm:table-row";
 
-    let imgCell = document.createElement("td");
-    let img = document.createElement("img");
-    img.src = item.image;
-    img.className = "w-20 h-20 object-cover rounded mx-auto sm:w-16 sm:h-16";
-    imgCell.className = "p-3 border flex justify-center sm:table-cell";
-    imgCell.appendChild(img);
-
     let titleCell = document.createElement("td");
     titleCell.innerText = item.title;
     titleCell.className = "p-3 font-medium border text-center sm:text-left";
@@ -492,7 +485,6 @@ viewBtn.addEventListener("click", () => {
 
     removeCell.appendChild(removeBtn);
 
-    row.appendChild(imgCell);
     row.appendChild(titleCell);
     row.appendChild(descCell);
     row.appendChild(priceCell);
